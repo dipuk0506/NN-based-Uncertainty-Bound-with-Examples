@@ -1,72 +1,61 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%   Project: Minimim deviation based similarity 
+%   Project: Minimum deviation based similarity 
+%   finding and using those similarities for UB
+%
+%   Purpose of script A1: Minimim deviation based similarity 
 %   finding for Uncertainty Bounds
 %   Aim: To achieve all indexes of similar samples
 %   Author: H M Dipu Kabir
 %   Steps: 
-%   1. Itertion over all Input combinations.
-%       2. Initial similarity threshold =1%
-%       3. If more than 200 similar points reduce threshold
-%       4. If less than 50 similar points increase threshold
-%       5. Save all similar indexes
-%   6. Save to variable
+%       1. Itertion over all Input combinations.
+%       2. Find all deviation by indexes
+%       3. Save top 100 deviation
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
 clear all
 
 load('Time_series.mat')
+% This data can be changed to any new dataset, following the 
+% same input-output pattern.
 
-Input = Demand_Data(:,1:end-1);
-Output = Demand_Data(:,end);
+Training = 0.6;
+Testing = 0.4;
+Similiar_event_count = 100; 
 
-similarity_count = zeros(1,length(Input));
+Train_end_index = round(length(Demand_Data)*Training);
+
+Input = Demand_Data(1:Train_end_index,1:end-1);
+Output = Demand_Data(1:Train_end_index,end);
+
 Range=max(Input)-min(Input);
 
-min_sample=50;
-max_sample=200;
-
 tic
-
 for iter1 = 1:length(Input)
-   Similarity_threshold=0.01;
-   % Starting with 2% range of all input to consider it similar.
-   % Most sample have 2% threshold. 
-   % Therefore, the initial threshold is 2%
-   loop_break=0;
-   while 1
-       matched_indexes=[];
-       for iter2 = 1: length(Input)
-           if max(abs(Input(iter1,:)-Input(iter2,:))./Range) < Similarity_threshold && iter1 ~= iter2 
-               similarity_count(iter1)=similarity_count(iter1)+1;
-               matched_indexes =[matched_indexes iter2];
-           end
-       end
-       if similarity_count(iter1)>max_sample
-           if loop_break==10
-                break;
-           end
-          similarity_count(iter1) =0;
-          Similarity_threshold = Similarity_threshold/2;
-          loop_break=loop_break+1;
-          matched_indexes=[];
-       else
-           if similarity_count(iter1)<min_sample
-               loop_break=loop_break+1;
-               similarity_count(iter1) =0;
-               matched_indexes=[];
-               Similarity_threshold = Similarity_threshold*1.5;
-           else
-               break
-           end
-       end
+   for iter2 = 1:length(Input)
+       max_dev__index(iter2,:) = [max(abs(Input(iter1,:)-Input(iter2,:))./Range) iter2];
    end
+   
+   sort_dev_index=sortrows(max_dev__index); %Sorting based on first column
+   matched_indexes = sort_dev_index(1:Similiar_event_count,2);  
+        %Indexes of 100(Similiar_event_count) closest input patterns
+        
+   Similarity_threshold = sort_dev_index(Similiar_event_count,1); 
+        %The most devient among selected closer inputs
 
    Similarity(iter1)=struct('Similarity_threshold',Similarity_threshold,...
        'matched_indexes',matched_indexes);
+   if mod(iter1,200)==0
+       clc
+       [num2str(iter1/length(Input)*100) '%' '  Complete']
+       % Observing progres in Command Window
+       % Takes about 1 hr. to find all similar events for entire training data
+   end
 end
 
-save('Similarity_report', 'Similarity', 'similarity_count', 'Input', 'Output')
+save('Similarity_report', 'Similarity', 'Input', 'Output', 'Train_end_index')
+
+['100%' '  Complete']
 
 toc

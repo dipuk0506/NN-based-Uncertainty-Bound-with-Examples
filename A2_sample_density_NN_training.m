@@ -21,8 +21,8 @@ load('Similarity_report.mat')
 %prediction for the input combination
 Output_Deviation = [Similarity.Similarity_threshold];
 
-Sample_density = similarity_count./(Output_Deviation*100);
 
+Sample_density = length(Similarity(1).matched_indexes)./(Output_Deviation)/100;
 %number of samples with less than 1% deviation
 %square penalizes Deviation >> 1% and rwards Deviation << 1%
 
