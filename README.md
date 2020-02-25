@@ -23,6 +23,6 @@ The code can be used for different datasets where the last column is the output 
 
 *Detailed description of codes are available as comments in codes.
 
-* A1, A4, and A5 is for Neural Network training. A2, A3 are for inspection.
+* A1, A4, and A5 are for Neural Network training. A2, A3 are for inspection.
 
 *A1 is time-consuming for large dataset.
