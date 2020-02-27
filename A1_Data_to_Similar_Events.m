@@ -23,16 +23,37 @@ load('Time_series.mat')
 Training = 0.6;
 Testing = 0.4;
 Similiar_event_count = 100; 
+sensitivity_consideration = 0
 
 Train_end_index = round(length(Demand_Data)*Training);
 
 Input = Demand_Data(1:Train_end_index,1:end-1);
 Output = Demand_Data(1:Train_end_index,end);
 
-Range=max(Input)-min(Input);
+if sensitivity_consideration == 1
+    net_point = feedforwardnet(10);
+    net_point = configure(net_point,Input',Output');
+    net_point = train(net_point,Input',Output');
+end
 
+
+Range=max(Input)-min(Input);
+sensitivity =1;
 tic
 for iter1 = 1:length(Input)
+   
+    current_input = Input(iter1,:);
+    if sensitivity_consideration == 1
+        current_output = net_point(current_input');
+        for iter2 = 1:size(Input,2) 
+       % Determining Sensitivity
+            current_input(iter2) = current_input(iter2) + Range(iter2)/1e4;
+            sensitivity(iter2) = abs(current_output - net_point(current_input'));
+            current_input(iter2) = current_input(iter2) - Range(iter2)/1e4;
+        end
+        sensitivity = sensitivity/max(sensitivity); 
+        %The highest sensitivity is considered one
+    end
    for iter2 = 1:length(Input)
        max_dev__index(iter2,:) = [max(abs(Input(iter1,:)-Input(iter2,:))./Range) iter2];
    end
