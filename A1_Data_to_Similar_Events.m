@@ -9,8 +9,9 @@
 %   Author: H M Dipu Kabir
 %   Steps: 
 %       1. Itertion over all Input combinations.
-%       2. Find all deviation by indexes
-%       3. Save top 100 deviation
+%       2. Find all deviation by indexes 
+%   (sensitivity can be considered during the consideration of deviation)
+%       3. Save top 100 similar events
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
