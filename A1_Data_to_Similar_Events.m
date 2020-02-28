@@ -56,7 +56,7 @@ for iter1 = 1:length(Input)
         %The highest sensitivity is considered one
     end
    for iter2 = 1:length(Input)
-       max_dev__index(iter2,:) = [max(abs(Input(iter1,:)-Input(iter2,:))./Range) iter2];
+       max_dev__index(iter2,:) = [max(abs(sensitivity.*(current_input-Input(iter2,:)))./Range) iter2];
    end
    
    sort_dev_index=sortrows(max_dev__index); %Sorting based on first column
