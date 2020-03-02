@@ -16,7 +16,7 @@ UB_point = 0.05 %Any value from 0 to 1
 
 % UB_point (Uncertainty Bound) is the cumulative probability from the lower-end.
 
-sample_no = 14028%round(rand(1)*length(Input)) %Any value from 1 to length of Data 
+sample_no = 1402%8%round(rand(1)*length(Input)) %Any value from 1 to length of Data 
 
 Input_index_number = size(Input,2);
 Output_index_number = Input_index_number+1;
@@ -42,5 +42,5 @@ hold on
 %Plotting the uncertainty bound
 PDF = Output(indexes);
 PDF = sort(PDF);
-%plot(Output_index_number,PDF(round(UB_point*length(PDF))), 'ok')
+plot(Output_index_number,PDF(round(UB_point*length(PDF))), 'ok')
 

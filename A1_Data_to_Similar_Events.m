@@ -17,14 +17,16 @@
 clc
 clear all
 
-load('Time_series.mat')
+load('Sensitivity_Example.mat')
+%load('Time_series.mat')
+
 % This data can be changed to any new dataset, following the 
 % same input-output pattern.
 
 Training = 0.6;
 Testing = 0.4;
 Similiar_event_count = 100; 
-sensitivity_consideration = 0
+sensitivity_consideration = 1
 
 Train_end_index = round(length(Demand_Data)*Training);
 
@@ -56,7 +58,7 @@ for iter1 = 1:length(Input)
         %The highest sensitivity is considered one
     end
    for iter2 = 1:length(Input)
-       max_dev__index(iter2,:) = [max(abs(sensitivity.*(current_input-Input(iter2,:)))./Range) iter2];
+       max_dev__index(iter2,:) = [max(sensitivity.*(abs(Input(iter1,:)-Input(iter2,:)))./Range) iter2];
    end
    
    sort_dev_index=sortrows(max_dev__index); %Sorting based on first column
@@ -77,7 +79,7 @@ for iter1 = 1:length(Input)
 end
 
 save('Similarity_report', 'Similarity', 'Input', 'Output', 'Train_end_index')
-
+clc
 ['100%' '  Complete']
 
 toc

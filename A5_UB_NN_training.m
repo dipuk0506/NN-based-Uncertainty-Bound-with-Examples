@@ -10,7 +10,8 @@
 clc
 clear all
 
-load('Similarity_report.mat');
+%load('Similarity_report.mat');
+load('Similarity_report.mat')
 load('Bound_Correction.mat');
 
 Uncertainty_Bound = 0.1 % The certain UB
@@ -37,13 +38,14 @@ net_UB = feedforwardnet([5 5]);
 net_UB = train(net_UB,Input',prediction_bound);
 
 % Observing the performance in entire data (both train and test).
-load('Time_series.mat')
+%load('Time_series.mat')
+load('Sensitivity_Example.mat')
 Input = Demand_Data(:,1:end-1);
 Output = Demand_Data(:,end);
 
 UB_array = net_UB(Input');
 
-plot(Output,'g')
+plot(Output,'.k')
 hold on
 plot(UB_array,'r')
 
