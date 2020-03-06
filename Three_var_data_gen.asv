@@ -1,11 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%   Aim: 1. Generating a toy Dataset for a 3-input-1-output NN
-%   
-%   One input dominates point prediction
-%   Another input dominates the uncertainty
-%   Third input is random to input
-%
+%   Aim: 1. Generating Dataset a 3-input-1-output NN
+%   2. One input is 
 %   Author: H M Dipu Kabir
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13,7 +9,7 @@
 
 clc
 clear all
-rng(0)
+
 
 N = 10000;
 x1 = [1/N:2/N:1 1:-2/N:1/N];
