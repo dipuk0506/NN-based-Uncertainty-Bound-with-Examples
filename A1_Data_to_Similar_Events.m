@@ -17,8 +17,8 @@
 clc
 clear all
 
-load('Sensitivity_Example.mat')
-%load('Time_series.mat')
+Datafile_name = 'Sensitivity_Example.mat';
+load(Datafile_name)
 
 % This data can be changed to any new dataset, following the 
 % same input-output pattern.
@@ -78,7 +78,7 @@ for iter1 = 1:length(Input)
    end
 end
 
-save('Similarity_report', 'Similarity', 'Input', 'Output', 'Train_end_index')
+save('Similarity_report', 'Similarity', 'Input', 'Output', 'Train_end_index','Datafile_name')
 clc
 ['100%' '  Complete']
 

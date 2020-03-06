@@ -14,7 +14,7 @@ clear all
 load('Similarity_report.mat')
 load('Bound_Correction.mat');
 
-Uncertainty_Bound = 0.1 % The certain UB
+Uncertainty_Bound = 0.90 % The certain UB
 
 Uncertainty_Bound_corrected = net_Bound_correction(Uncertainty_Bound)
 
@@ -38,8 +38,7 @@ net_UB = feedforwardnet([5 5]);
 net_UB = train(net_UB,Input',prediction_bound);
 
 % Observing the performance in entire data (both train and test).
-%load('Time_series.mat')
-load('Sensitivity_Example.mat')
+load(Datafile_name)
 Input = Demand_Data(:,1:end-1);
 Output = Demand_Data(:,end);
 
