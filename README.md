@@ -21,19 +21,19 @@ A4. Bound correction for uncertainty bounds.
 A5. Finding a certain UB from similar patterns and train NN for UB.
 
 
-###About the training data and input-output pattern:
+### About the training data and input-output pattern:
 
 The data used for the NN training is a time-series data. The dataset contains five columns. First four column represents the input combination and the last column represents the corresponding output.
 
 
 The code can be used for different datasets where the last column is the output and other columns are input.
 
-*Detailed description of codes are available as comments in codes.
+- Detailed description of codes are available as comments in codes.
 
 - A1, A4, and A5 are for Neural Network training. A2, A3 are for inspection.
 
 - A1 is time-consuming for large dataset.
 
 
-###Link to the paper:
+### Link to the paper:
 https://www.researchgate.net/publication/342548674_Uncertainty_Quantification_Neural_Network_from_Similarity_and_Sensitivity
