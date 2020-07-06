@@ -5,10 +5,8 @@
 Uncertainty quantification (UQ) from similar events brings transparency. However, the presence of an irrelevant event may degrade the performance of similarity-based algorithms. This paper presents a UQ technique from similarity and sensitivity. A traditional neural network (NN) for the point prediction is trained at first to obtain the sensitivity of different input parameters at different points. The relative range of each input parameter is set based on sensitivity. When the sensitivity of one parameter is very high, a small deviation in that parameter may result in a large deviation in output. While selecting similar events, we allow a small deviation in highly sensitive parameters and a large deviation in less sensitive parameters. Uncertainty bounds are computed based on similar events. Similar events contain exact matches and slightly different samples. Therefore, we train a NN for bound correction. The bound-corrected uncertainty bounds (UB) provide a fair and domain-independent uncertainty bound. Finally, we train NNs to compute UB directly. The end-user need to run the final NN to obtain UB, instead of following the entire process. The code of the proposed method is also uploaded to Github. Also, users need to run only the fifth script to train a NN of a different UB.
 
 
-Neural Network-based Uncertainty Bounds from Similar Events
 
-
-Steps of Training NN for the Uncertainty-bound:
+### Steps of Training NN for the Uncertainty-bound:
 
 A1. Finding indexes of similarity and sensitivity based similar patterns for each input pattern in the dataset.
 
