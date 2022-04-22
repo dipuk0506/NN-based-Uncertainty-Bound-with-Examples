@@ -1,4 +1,4 @@
-## Source of data
+## Source of Data
 
 In Jupyter Notebooks, we obtain uncertainty bounds (UB) on Dataset 3 of the following Kaggle notebook:
 
