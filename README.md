@@ -15,7 +15,7 @@ A2. Training sample density NN to compute the prediction strength (Optional).
 A3. Plotting similar events. (Optional).
 
 A4. Bound correction for uncertainty bounds.
-
+https://camo.githubusercontent.com/7d1c4ba315e6f7d348c921a1c33f7d05b28594f9dc7901f0db61b7158a99c493/6174746163686d656e743a65373033393064352d643665302d343831312d613666392d6562656631653439323935392e706e67
 A5. Finding a certain UB from similar patterns and train NN for UB.
 
 
