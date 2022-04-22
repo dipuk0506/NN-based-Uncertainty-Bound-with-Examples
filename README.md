@@ -33,7 +33,7 @@ The code can be used for different datasets where the last column is the output 
 - A1 is time-consuming for large dataset.
 
 ### The reason for bound correction at A4:
-<img src="https://github.com/dipuk0506/NN-based-Uncertainty-Bound-with-Examples/blob/master/Bound_Correction.png">
+<img src="https://github.com/dipuk0506/NN-based-Uncertainty-Bound-with-Examples/blob/master/Bound_Correction.png" width="500">
 
 
 ### The paper:
